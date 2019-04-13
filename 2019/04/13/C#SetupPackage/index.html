@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Aelous">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="C# SetUp package">
+  <meta property="og:description" content="A domesticated man">
+  <meta property="og:site_name" content="Aelous&#39;s Blog">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://aaaelous.com">
+  
+    <link rel="alternate" href="/atom.xml" title="Aelous&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Aelous's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">C# SetUp package</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/aaaelous">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1569580131@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Aelous</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-04-13</span>
+            <span class="time">22:53:33</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/C/">C#</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/program/">#program</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>​    前段时间我咸着无聊，写了一个.net破解学校上课端口(类似于一个远控，破解过程我就不发了)，突然想.net程序怎么脱离.netframe work的框架,在网上找了好多种方法，基本上都是基于别人的虚拟机,比如mono,飞信，之类的。最后一想,为什么不在打包的时候不把.netframe work一起打包到安装包里面呢？</p>
+<a id="more"></a>
+<p>​    于是我就开始搜了搜关于打包程序的 <a href="https://blog.csdn.net/u011966339/article/details/79380387/" target="_blank" rel="noopener">例子</a> ，写了一个Demo,感觉效果还不错。</p>
+<h4 id="1-先新建一个Visual-Studio-Installer的安装项目"><a href="#1-先新建一个Visual-Studio-Installer的安装项目" class="headerlink" title="1.先新建一个Visual Studio Installer的安装项目"></a>1.先新建一个Visual Studio Installer的安装项目</h4><p>我用的是VS2019版,在确认插件全安装好了之后新建一个项目，在搜索栏里面搜索installer或者Setup Project</p>
+<p><img src="../img/1.png" alt="安装2019"></p>
+<p>之前的VS版本直接新建项目-其他-安装项目就行</p>
+<p><img src="https://images.cnitblog.com/blog/495603/201404/291534500484086.jpg" alt="安装"></p>
+<p>​    </p>
+<p>创建完毕后，你会得到三个文件夹</p>
+<ol>
+<li>Application Folder~（这个是用来存放你需要打包的程序，包括icon，说明书，卸载程序等）~</li>
+<li>User’s Desktop~（这个存放的是安装完成后，用户桌面上的程序，一般放你要安装的程序的快捷方式）~</li>
+<li>User’s Programs Menu~（这个存放的是安装完成后，系统根目录下的程序）~</li>
+</ol>
+<p>​    我们首先把自己要打包的程序全部都放在第一个文件夹Application Folder中，需要添加的文件就是你所需要打包的文件，教程里说需要把debug文件编译过后全部塞进去，但是我自己试着只放一个编译过后的exe文件也是可以的。<del>见仁见智嘛2333333</del></p>
+<p>​    如果我们还有图标，或者导入表，或者lib，或者其他资源文件，则可以按照源码内使用的文件格式，进行绝对路径的索引，比如在安装路径下面创建一个img的文件夹，那么我们就在第一个文件夹Application Folder中新建一个img文件夹用来放图片等资源。</p>
+<h4 id="2-设置属性"><a href="#2-设置属性" class="headerlink" title="2.设置属性"></a>2.设置属性</h4><p>​    这一步最为重要，因为如果你不想在用户运行你的程序的时候还会弹出缺少.net的支持库的时候，这里一定要把安装包也打包好。</p>
+<p>​    首先我们右键解决方案中我们的打包项目-属性-Prerequisites,</p>
+<p> <img src="../img/2.png" alt="支持库"></p>
+<p>​    选择了自己的.net框架的版本之后，<strong>*一定要选从与我的应用程序相同的位置下载系统必备组件</strong>。</p>
+<p>​    虽然这样安装包会比较大，但是我个人亲测如果编译出来的程序不超过30M，安装包绝对不会超过100M。</p>
+<h4 id="3-设置启动条件"><a href="#3-设置启动条件" class="headerlink" title="3.设置启动条件"></a>3.设置启动条件</h4><p>​    设置好了属性之后，需要把启动条件也设置一下，右键项目-view-启动条件，<strong>在属性里选择自己的.net版本</strong>。</p>
+<p>​    <img src="../img/3.png" alt="view"></p>
+<p>​    </p>
+<h4 id="4-设置安装目录"><a href="#4-设置安装目录" class="headerlink" title="4.设置安装目录"></a>4.设置安装目录</h4><p>​    <strong><u>单击</u></strong>我们的项目，在属性中把参数都设置完：</p>
+<p>Author设置为作者，Manufacturer设置为公司，ProductName设置为打包名称，InstallAllUsers 设置为True。</p>
+<p>​    然后我们同样单击三个文件夹中的第一个文件夹Application Folder，将DefaultLocation中的<code>[ProgramFilesFolder][Manufacturer]\[ProductName]</code>的[Manufacturer]删掉</p>
+<h4 id="5-最后的部署"><a href="#5-最后的部署" class="headerlink" title="5.最后的部署"></a>5.最后的部署</h4><p>​    右键我们放在第一个文件夹中的exe,生成快捷方式，重命名，然后在User’s Programs Menu文件夹中，继续创建一个跟项目同名的文件夹，然后将快捷方式拖到其他的两个文件夹内，每个文件夹各一个，保证创建之后每个文件夹都有打开exe的快捷方式，创建完成之后，在创建完成的快捷方式的属性里面设置一下icon。</p>
+<p>​    之后我们需要卸载程序，卸载程序用我们电脑中的Msiexec.exe，这个文件在C：Windows\System32\Msiexec.exe路径下，我们直接拖到第一个文件夹里面，改名，然后继续跟上面一步的操作一样，创建快捷方式。<del>桌面的文件夹其实不用放卸载程序…..</del></p>
+<p>​    最后我们再单击项目文件，在属性中找到product code：~<code>{9A4E7438-****-****-****-B3D9DE8F24C3}</code> 我们把它复制下来，粘贴到我们刚才创建的卸载程序的属性Arguments里面</p>
+<p>​    一上的步骤都确认无误后，我们的部署就完成了，之后我们点击生成解决方案</p>
+<p><img src="../img/4.png" alt="view"></p>
+<p>会出现这几个文件，最上面的那个文件夹，就是给你放你的.net框架对应版本的安装包的，比如我的是4.6.1的版本：</p>
+<p><img src="../img/5.png" alt="view"></p>
+<p>​    注意：这个语言包也一定不能少，少了他会提示你缺少CHS！</p>
+<p>所以一定要下好放进去。这里我放两个我的版本的下载链接：</p>
+<p><a href="http://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.exe" target="_blank" rel="noopener">NDP461-KB3102436-x86-x64-AllOS-ENU.exe</a></p>
+<p><a href="http://download.microsoft.com/download/A/7/8/A780698F-ECCC-4356-B50B-5358D837646B/NDP461-KB3102436-x86-x64-AllOS-CHS.exe" target="_blank" rel="noopener">NDP461-KB3102436-x86-x64-AllOS-CHS.exe</a></p>
+<p>​    全部OK之后我们点击setup.exe,一路点next：</p>
+<p><img src="../img/6.png" alt="view"></p>
+<p><img src="../img/7.png" alt="view"></p>
+<p>​    看起来不错，这样基本上算是完成了</p>
+<p>​    最后我想说， <del>卧槽，为什么想不开非要用C#写exe啊！！！</del>  当然是因为喜欢啦~就为了满足一下用户的运行体验就得这么复杂….我选择用C   :yum:</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Thanks For <a target="_blank" href="https://github.com/aaaelous">Aeous.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
