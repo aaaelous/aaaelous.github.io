@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Aelous">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Aelous&#39;s Blog">
+  <meta property="og:description" content="A domesticated man">
+  <meta property="og:site_name" content="Aelous&#39;s Blog">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://aaaelous.com">
+  
+    <link rel="alternate" href="/atom.xml" title="Aelous&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Aelous's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Untitled Post</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/aaaelous">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1569580131@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Aelous</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-04-14</span>
+            <span class="time">22:33:07</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <hr>
+<p>title:SpringMVC’s deploy<br>categories:JAVA</p>
+<h2 id="tags-program"><a href="#tags-program" class="headerlink" title="tags:program"></a>tags:program</h2><p><img src="/img/1.png" alt="MVC"></p>
+<p>​    因为以前很少接触SpringMVC的基本架构，但是这个图看上去，是Spring架构里面的最基本的组成部分，我查了查官网，他给出的资料是这样的：</p>
+ <a id="more"></a>
+<pre><code>Spring Web MVC is the original web framework built on the Servlet API and has been included in the Spring Framework from the very beginning. The formal name, “Spring Web MVC,”comes from the name of its source module&apos;spring-web mvc`,but it is more commonly known as “Spring MVC”.
+</code></pre><p>参考文本：<a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html" target="_blank" rel="noopener">Web on Servlet Stack</a></p>
+<p>​    SpringMVC 是类似于 Struts2 的一个 MVC 框架，在实际开发中，接收浏览器的请求响应，对数据进行处理，然后返回页面进行显示，但是上手难度却比 Struts2 简单多了。而且由于 Struts2 所暴露出来的安全问题，SpringMVC 已经成为了大多数企业优先选择的框架。</p>
+<h3 id="1-部署SpringMVC的项目"><a href="#1-部署SpringMVC的项目" class="headerlink" title="1.部署SpringMVC的项目"></a>1.部署SpringMVC的项目</h3><p>第一步先导包，</p>
+<p>​    可以在Spring的官网上面下载他的框架包，不过内容非常多，而且也不能全部都导入。<del>全部都导入了会有各种各样的错误（手动狗头）</del></p>
+<p><img src="/img/9.png" alt="jar包"></p>
+<p>​    我们需要的包只有8个：</p>
+<p>commons-logging-1.2.jar</p>
+<p>spring-aop-5.1.0.RELEASE.jar</p>
+<p>spring-beans-5.1.0.RELEASE.jar</p>
+<p>spring-context-5.1.0.RELEASE.jar</p>
+<p>spring-core-5.1.0.RELEASE.jar</p>
+<p>spring-expression-5.1.0.RELEASE.jar</p>
+<p>spring-web-5.1.0.RELEASE.jar</p>
+<p>spring-webmvc-5.1.0.RELEASE.jar</p>
+<p>找到了这几个包之后，我们新建一个SpringMVC的项目</p>
+<p>把这几个包全部拖到lib里</p>
+<p><img src="/img/10.png" alt="目录"></p>
+<h3 id="2-配置web-xml文件"><a href="#2-配置web-xml文件" class="headerlink" title="2.配置web.xml文件"></a>2.配置web.xml文件</h3><p>​    如果创建项目的时候没有点同时创建web.xml文件的话…就新建个别的…..从里面copy一个过来吧。。。</p>
+<p>​    <img src="/img/11.png" alt="web"></p>
+<p>之后我们删除所有的welcome。。。</p>
+<p>新写一个</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springDispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 配置DispatcherServlet 的一个初始化参数：配置SpringMVC配置文件的位置和名称 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>location<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>URL<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>放在刚才的welcome的地方</p>
+<p>(有的人打XML没有提示的….可以去help里面下载写spring的插件….很好用的自动提示)</p>
+<p>之后我们将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;param-value&gt;location&lt;/param-value&gt;</span><br></pre></td></tr></table></figure>
+<p>中的location改为classpath:springmvc.xml.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;load-on-startup&gt;URL&lt;/load-on-startup&gt;</span><br></pre></td></tr></table></figure>
+<p>的值改成1</p>
+<p>最后会变成</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!--配置 DispatcherServlet --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- The front controller of this Spring Web application, responsible for handling all application requests --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springDispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置DispatcherServlet 的一个初始化参数：配置SpringMVC配置文件的位置和名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Map all requests to the DispatcherServlet for handling --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springDispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样XML就算是配置好了</p>
+<h3 id="3-在src中配置全局配置文件"><a href="#3-在src中配置全局配置文件" class="headerlink" title="3.在src中配置全局配置文件"></a>3.在src中配置全局配置文件</h3><p>​    我们在src的文件夹中(根目录没有的话就在Java Resources中)创建一个名为springmvc.xml的文件 ，继续配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置自动扫描的包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.lichun.springmvc"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置视图解析器： 如何把handler方法返回值解析为实际的物理视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样全部的部署就算好了</p>
+<h3 id="4-实验一下"><a href="#4-实验一下" class="headerlink" title="4.实验一下"></a>4.实验一下</h3><p>创建一个index.jsp在根目录里面，写一个</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"helloworld"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这是一个链接 然后我们导向的页面 创在WEB-INF/views下</p>
+<p>新建一个success.jsp里面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span></span><br><span class="line">Sucess Page</span><br><span class="line"><span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后我们在TOMCAT上面运行一下</p>
+<p><img src="/img/12.png" alt="running"></p>
+<p><img src="/img/13.png" alt="running"></p>
+<p>这样就成功啦~~</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Thanks For <a target="_blank" href="https://github.com/aaaelous">Aeous.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
